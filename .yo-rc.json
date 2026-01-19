@@ -1,0 +1,36 @@
+{
+  "generator-jhipster": {
+    "applicationType": "gateway",
+    "authenticationType": "jwt",
+    "baseName": "jhipsterWin",
+    "buildTool": "maven",
+    "cacheProvider": null,
+    "clientFramework": "react",
+    "clientTestFrameworks": [],
+    "clientTheme": "none",
+    "creationTimestamp": 1768802127250,
+    "databaseType": "sql",
+    "devDatabaseType": "postgresql",
+    "enableHibernateCache": null,
+    "enableTranslation": false,
+    "entities": [],
+    "feignClient": null,
+    "jhipsterVersion": "8.11.0",
+    "jwtSecretKey": "NTcxOWI0NWJhZjMwMTJhZjkyNTkyOWQxYmVjZDE0NDdjM2FhZjEzMTEzNGI3NzNmMGRmMzAzOTI5ZDBkMDQxYzU0ZjU1ZGUxOThjZWVkNTg3OGI5MmExNTMyMGM2OTMyZjc3NGQzNjJmMjZjMjhmYmYxMWRlODhlZjllY2E4NmI=",
+    "microfrontend": true,
+    "microfrontends": [
+      {
+        "baseName": "product"
+      }
+    ],
+    "nativeLanguage": "en",
+    "packageName": "com.mycompany.myapp",
+    "prodDatabaseType": "postgresql",
+    "reactive": true,
+    "serverPort": 8080,
+    "serviceDiscoveryType": "consul",
+    "syncUserWithIdp": null,
+    "testFrameworks": [],
+    "withAdminUi": true
+  }
+}
