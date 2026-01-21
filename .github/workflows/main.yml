@@ -1,21 +1,19 @@
-name: JHipster CI-CD
-on:
-  push:
-    branches: [main]
-jobs:
-  pipeline:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Set up JDK 17
-        uses: actions/setup-java@v4
-        with:
-          java-version: '17'
-          distribution: 'temurin'
-      - name: Build and Push Docker Image
-        run: |
-          ./mvnw package -Pprod verify jib:build \
-          -Djib.to.image=${{ secrets.DOCKER_USERNAME }}/jhipsterwin \
-          -Djib.to.auth.username=${{ secrets.DOCKER_USERNAME }} \
-          -Djib.to.auth.password=${{ secrets.DOCKER_PASSWORD }} \
-          -DskipTests
+steps:
+  - uses: actions/checkout@v4
+  - name: Set up JDK 17
+    uses: actions/setup-java@v4
+    with:
+      java-version: '17'
+      distribution: 'temurin'
+
+  # Thêm bước này vào trước bước Build
+  - name: Make mvnw executable
+    run: chmod +x mvnw
+
+  - name: Build and Push Docker Image
+    run: |
+      ./mvnw package -Pprod verify jib:build \
+      -Djib.to.image=docker.io/${{ secrets.DOCKER_USERNAME }}/jhipster-win \
+      -Djib.to.auth.username=${{ secrets.DOCKER_USERNAME }} \
+      -Djib.to.auth.password=${{ secrets.DOCKER_PASSWORD }} \
+      -DskipTests
