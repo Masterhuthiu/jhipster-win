@@ -36,3 +36,4 @@ jobs:
           -DskipTests
 
 # Trigger build lại
+# Re-run pipeline after fixing secrets.
