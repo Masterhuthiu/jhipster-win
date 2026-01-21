@@ -125,8 +125,9 @@ spec:
           imagePullPolicy: 'IfNotPresent'
           securityContext:
             allowPrivilegeEscalation: false
-            runAsNonRoot: true
-            runAsUser: 1001
+            #runAsNonRoot: true
+            runAsUser: 0
+            runAsGroup: 0
           ports:
             - name: http
               containerPort: 8500
