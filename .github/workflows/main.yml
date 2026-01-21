@@ -13,7 +13,7 @@ steps:
   - name: Build and Push Docker Image
     run: |
       ./mvnw package -Pprod verify jib:build \
-      -Djib.to.image=docker.io/${{ secrets.DOCKER_USERNAME }}/jhipster-win \
+      -Djib.to.image=docker.io/masterhuthui/jhipster-win \
       -Djib.to.auth.username=${{ secrets.DOCKER_USERNAME }} \
       -Djib.to.auth.password=${{ secrets.DOCKER_PASSWORD }} \
       -DskipTests
