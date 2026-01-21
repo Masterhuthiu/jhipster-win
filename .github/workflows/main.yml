@@ -34,3 +34,5 @@ jobs:
           ./mvnw package -Pprod verify jib:build \
           -Djib.to.image=docker.io/masterhuthui/jhipster-win \
           -DskipTests
+
+# Trigger build lại
