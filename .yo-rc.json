@@ -10,13 +10,14 @@
     "clientTheme": "none",
     "creationTimestamp": 1768802127250,
     "databaseType": "sql",
+    "dbRandomPassword": "3dd25962e033bc1c81672efef3e0781d24ef56e3a5dfd6b5e1e2d26b79a2",
     "devDatabaseType": "postgresql",
     "enableHibernateCache": null,
     "enableTranslation": false,
     "entities": [],
     "feignClient": null,
     "jhipsterVersion": "8.11.0",
-    "jwtSecretKey": "NTcxOWI0NWJhZjMwMTJhZjkyNTkyOWQxYmVjZDE0NDdjM2FhZjEzMTEzNGI3NzNmMGRmMzAzOTI5ZDBkMDQxYzU0ZjU1ZGUxOThjZWVkNTg3OGI5MmExNTMyMGM2OTMyZjc3NGQzNjJmMjZjMjhmYmYxMWRlODhlZjllY2E4NmI=",
+    "jwtSecretKey": "YTllMTBiM2I5NjQ1NTRkMjdiYzRmMjM0ODhmMDY1YThlNmNhYzIzM2FlYjI2ZTVjMjM0NDY1NTMyNDA4MGQ1ZWQwMGJmZGNjNTZmZDA2NjA2NTk2N2NiZTg4ODk3MTVlYmFlMQ==",
     "microfrontend": true,
     "microfrontends": [
       {
