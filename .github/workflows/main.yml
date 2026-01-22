@@ -38,4 +38,18 @@ jobs:
         run: |
           # Bạn dùng lệnh curl để bấm chuông OpenShift
           # Thêm -k để bỏ qua kiểm tra chứng chỉ SSL nếu cần
-          curl -X POST -k "https://api.rm2.thpm.p1.openshiftapps.com:6443/apis/build.openshift.io/v1/namespaces/cosa199212-dev/buildconfigs/jhipster-deploy-trigger/webhooks/<secret>/generic"
+          curl -X POST -k "https://api.rm2.thpm.p1.openshiftapps.com:6443/apis/build.openshift.io/v1/namespaces/cosa199212-dev/buildconfigs/jhipster-deploy-trigger/webhooks/123456789/generic"
+      - name: Deploy to OpenShift
+        run: |
+          # 1. Tải công cụ điều khiển OpenShift (oc)
+          curl -L https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/openshift-client-linux.tar.gz | tar -xz
+          sudo mv oc /usr/local/bin/
+
+          # 2. Đăng nhập bằng Token vĩnh cửu bạn đã lưu trong GitHub Secrets
+          oc login --token=${{ secrets.OPENSHIFT_TOKEN }} --server=https://api.rm2.thpm.p1.openshiftapps.com:6443 --insecure-skip-tls-verify
+
+          # 3. Ép OpenShift kéo Image mới nhất và khởi động lại Pod
+          oc rollout restart deployment/jhipster-gateway -n cosa199212-dev
+
+          # 4. Kiểm tra trạng thái "băng lệnh" để biết khi nào Pod mới đã Running
+          oc rollout status deployment/jhipster-gateway -n cosa199212-dev
