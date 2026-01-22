@@ -41,11 +41,18 @@ jobs:
           curl -X POST -k "https://api.rm2.thpm.p1.openshiftapps.com:6443/apis/build.openshift.io/v1/namespaces/cosa199212-dev/buildconfigs/jhipster-deploy-trigger/webhooks/123456789/generic"
       - name: Deploy to OpenShift
         run: |
-          # Đăng nhập
+          # 1. Tải và cài đặt oc client (Fix lỗi command not found)
+          curl -L https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/openshift-client-linux.tar.gz | tar -xz
+          sudo mv oc /usr/local/bin/
+
+          # 2. Kiểm tra cài đặt
+          oc version --client
+
+          # 3. Đăng nhập bằng Token vĩnh cửu
           oc login --token=${{ secrets.OPENSHIFT_TOKEN }} --server=https://api.rm2.thpm.p1.openshiftapps.com:6443 --insecure-skip-tls-verify
 
-          # Lệnh "thần thánh" để cập nhật bản mới nhất từ Docker Hub
+          # 4. Ép Deployment kéo Image mới nhất từ Docker Hub và Restart
           oc rollout restart deployment/jhipster-gateway -n cosa199212-dev
 
-          # Theo dõi đến khi xong
+          # 5. Theo dõi trạng thái cho đến khi hoàn thành
           oc rollout status deployment/jhipster-gateway -n cosa199212-dev
