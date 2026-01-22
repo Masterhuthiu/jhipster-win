@@ -34,11 +34,6 @@ jobs:
           ./mvnw package -Pprod verify jib:build \
           -Djib.to.image=docker.io/masterhuthiu/jhipster-win \
           -DskipTests
-      - name: Trigger OpenShift CD via Webhook
-        run: |
-          # Bạn dùng lệnh curl để bấm chuông OpenShift
-          # Thêm -k để bỏ qua kiểm tra chứng chỉ SSL nếu cần
-          curl -X POST -k "https://api.rm2.thpm.p1.openshiftapps.com:6443/apis/build.openshift.io/v1/namespaces/cosa199212-dev/buildconfigs/jhipster-deploy-trigger/webhooks/123456789/generic"
       - name: Trigger OpenShift Webhook
         run: |
           curl -X POST -k \
