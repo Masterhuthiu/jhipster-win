@@ -39,15 +39,9 @@ jobs:
           # Bạn dùng lệnh curl để bấm chuông OpenShift
           # Thêm -k để bỏ qua kiểm tra chứng chỉ SSL nếu cần
           curl -X POST -k "https://api.rm2.thpm.p1.openshiftapps.com:6443/apis/build.openshift.io/v1/namespaces/cosa199212-dev/buildconfigs/jhipster-deploy-trigger/webhooks/123456789/generic"
-      - name: Deploy to OpenShift
+      - name: Trigger OpenShift Webhook
         run: |
-          # Cài đặt oc client
-          curl -L https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/openshift-client-linux.tar.gz | tar -xz
-          sudo mv oc /usr/local/bin/
-
-          # Đăng nhập (Dùng dấu ngoặc kép và viết trên 1 dòng duy nhất)
-          oc login --token="${{ secrets.OPENSHIFT_TOKEN }}" --server="https://api.rm2.thpm.p1.openshiftapps.com:6443" --insecure-skip-tls-verify
-
-          # Thực hiện cập nhật ứng dụng
-          oc rollout restart deployment/jhipster-gateway -n cosa199212-dev
-          oc rollout status deployment/jhipster-gateway -n cosa199212-dev
+          curl -X POST -k \
+            -H "Content-Type: application/json" \
+            -d '{"action": "redeploy"}' \
+            "https://api.rm2.thpm.p1.openshiftapps.com:6443/apis/build.openshift.io/v1/namespaces/cosa199212-dev/buildconfigs/jhipster-deploy-trigger/webhooks/123456789/generic"
