@@ -34,9 +34,10 @@ jobs:
           ./mvnw package -Pprod verify jib:build \
           -Djib.to.image=docker.io/masterhuthiu/jhipster-win \
           -DskipTests
-      - name: Trigger OpenShift Webhook
+      - name: Trigger OpenShift via Authenticated API
         run: |
           curl -X POST -k \
+            -H "Authorization: Bearer ${{ secrets.OPENSHIFT_TOKEN }}" \
             -H "Content-Type: application/json" \
             -d '{"action": "redeploy"}' \
             "https://api.rm2.thpm.p1.openshiftapps.com:6443/apis/build.openshift.io/v1/namespaces/cosa199212-dev/buildconfigs/jhipster-deploy-trigger/webhooks/123456789/generic"
