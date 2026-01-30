@@ -71,6 +71,9 @@ spring:
     password:
   thymeleaf:
     cache: false
+  docker:
+    compose:
+      enabled: false
 
 server:
   port: 8080
